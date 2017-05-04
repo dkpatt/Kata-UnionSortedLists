@@ -24,9 +24,7 @@ namespace Kata
             
             var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
-            Assert.AreEqual(unionedList.Count, 2);
-            Assert.AreEqual(1, unionedList[0]);
-            Assert.AreEqual(2, unionedList[1]);
+            this.AssertUnionedList(new List<int>() { 1, 2 }, unionedList);
         }
 
         [TestMethod]
@@ -37,8 +35,7 @@ namespace Kata
             
             var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
-            Assert.AreEqual(unionedList.Count, 1);
-            Assert.AreEqual(1, unionedList[0]);
+            this.AssertUnionedList(new List<int>() { 1 }, unionedList);
         }
 
         [TestMethod]
@@ -49,12 +46,7 @@ namespace Kata
             
             var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
-            Assert.AreEqual(unionedList.Count, 5);
-            Assert.AreEqual(0, unionedList[0]);
-            Assert.AreEqual(1, unionedList[1]);
-            Assert.AreEqual(2, unionedList[2]);
-            Assert.AreEqual(3, unionedList[3]);
-            Assert.AreEqual(4, unionedList[4]);
+            this.AssertUnionedList(new List<int>() { 0, 1, 2, 3, 4 }, unionedList);
         }
 
         [TestMethod]
@@ -65,14 +57,7 @@ namespace Kata
 
             var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
-            Assert.AreEqual(unionedList.Count, 7);
-            Assert.AreEqual(0, unionedList[0]);
-            Assert.AreEqual(1, unionedList[1]);
-            Assert.AreEqual(3, unionedList[2]);
-            Assert.AreEqual(5, unionedList[3]);
-            Assert.AreEqual(8, unionedList[4]);
-            Assert.AreEqual(22, unionedList[5]);
-            Assert.AreEqual(100, unionedList[6]);
+            this.AssertUnionedList(new List<int>() { 0, 1, 3, 5, 8, 22, 100 }, unionedList);
         }
 
         [TestMethod]
@@ -83,12 +68,17 @@ namespace Kata
 
             var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
-            Assert.AreEqual(unionedList.Count, 5);
-            Assert.AreEqual(1, unionedList[0]);
-            Assert.AreEqual(2, unionedList[1]);
-            Assert.AreEqual(5, unionedList[2]);
-            Assert.AreEqual(22, unionedList[3]);
-            Assert.AreEqual(44, unionedList[4]);
+            this.AssertUnionedList(new List<int>() { 1, 2, 5, 22, 44 }, unionedList);
+        }
+
+        private void AssertUnionedList(List<int> expected, List<int> actual)
+        {
+            Assert.AreEqual(expected.Count, actual.Count);
+
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
     }
 }
