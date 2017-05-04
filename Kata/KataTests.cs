@@ -74,5 +74,21 @@ namespace Kata
             Assert.AreEqual(22, unionedList[5]);
             Assert.AreEqual(100, unionedList[6]);
         }
+
+        [TestMethod]
+        public void Given_MultipleElementArrays__2_5_44__1_2_5_22()
+        {
+            var listFirst = new List<int>() { 2, 5, 44 };
+            var listSecond = new List<int>() { 1, 2, 5, 22 };
+
+            var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
+
+            Assert.AreEqual(unionedList.Count, 5);
+            Assert.AreEqual(1, unionedList[0]);
+            Assert.AreEqual(2, unionedList[1]);
+            Assert.AreEqual(5, unionedList[2]);
+            Assert.AreEqual(22, unionedList[3]);
+            Assert.AreEqual(44, unionedList[4]);
+        }
     }
 }
