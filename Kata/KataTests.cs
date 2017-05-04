@@ -8,14 +8,21 @@ namespace Kata
     [TestClass]
     public class KataTests
     {
+        private Sandbox sandbox;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            sandbox = new Sandbox();
+        }
+
         [TestMethod]
         public void Given_SingleElementArrays__1__2()
         {
             var listFirst = new List<int>() { 1 };
             var listSecond = new List<int>() { 2 };
-
-            var sandbox = new Sandbox();
-            var unionedList = sandbox.UnionSortedLists(listFirst, listSecond);
+            
+            var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
             Assert.AreEqual(unionedList.Count, 2);
             Assert.AreEqual(1, unionedList[0]);
@@ -27,9 +34,8 @@ namespace Kata
         {
             var listFirst = new List<int>() { 1 };
             var listSecond = new List<int>() { 1 };
-
-            var sandbox = new Sandbox();
-            var unionedList = sandbox.UnionSortedLists(listFirst, listSecond);
+            
+            var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
             Assert.AreEqual(unionedList.Count, 1);
             Assert.AreEqual(1, unionedList[0]);
@@ -40,9 +46,8 @@ namespace Kata
         {
             var listFirst = new List<int>() { 1, 2, 4 };
             var listSecond = new List<int>() { 0, 3 };
-
-            var sandbox = new Sandbox();
-            var unionedList = sandbox.UnionSortedLists(listFirst, listSecond);
+            
+            var unionedList = this.sandbox.UnionSortedLists(listFirst, listSecond);
 
             Assert.AreEqual(unionedList.Count, 5);
             Assert.AreEqual(0, unionedList[0]);
