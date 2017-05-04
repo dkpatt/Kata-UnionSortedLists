@@ -21,5 +21,35 @@ namespace Kata
             Assert.AreEqual(1, unionedList[0]);
             Assert.AreEqual(2, unionedList[1]);
         }
+
+        [TestMethod]
+        public void Given_SingleElementArrays__1__1()
+        {
+            var listFirst = new List<int>() { 1 };
+            var listSecond = new List<int>() { 1 };
+
+            var sandbox = new Sandbox();
+            var unionedList = sandbox.UnionSortedLists(listFirst, listSecond);
+
+            Assert.AreEqual(unionedList.Count, 1);
+            Assert.AreEqual(1, unionedList[0]);
+        }
+
+        [TestMethod]
+        public void Given_MultipleElementArrays__1_2_4__0_3()
+        {
+            var listFirst = new List<int>() { 1, 2, 4 };
+            var listSecond = new List<int>() { 0, 3 };
+
+            var sandbox = new Sandbox();
+            var unionedList = sandbox.UnionSortedLists(listFirst, listSecond);
+
+            Assert.AreEqual(unionedList.Count, 5);
+            Assert.AreEqual(0, unionedList[0]);
+            Assert.AreEqual(1, unionedList[1]);
+            Assert.AreEqual(2, unionedList[2]);
+            Assert.AreEqual(3, unionedList[3]);
+            Assert.AreEqual(4, unionedList[4]);
+        }
     }
 }
