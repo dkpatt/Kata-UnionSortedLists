@@ -15,63 +15,55 @@ namespace Kata
         {
             var unionedList = new List<int>();
             
-            int position1 = 0;
-            int position2 = 0;
+            int pointer1 = 0;
+            int pointer2 = 0;
 
             do
             {
-                if (position1 == firstSortedList.Count)
+                if (pointer1 == firstSortedList.Count)
                 {
-                    unionedList.Add(secondSortedList[position2]);
+                    unionedList.Add(secondSortedList[pointer2]);
 
-                    if (position2 < secondSortedList.Count)
-                    {
-                        position2++;
-                    }
+                    pointer2 = this.AdvancePointer(pointer2, secondSortedList);
                 }
-                else if (position2 == secondSortedList.Count)
+                else if (pointer2 == secondSortedList.Count)
                 {
-                    unionedList.Add(firstSortedList[position1]);
+                    unionedList.Add(firstSortedList[pointer1]);
 
-                    if (position1 < firstSortedList.Count)
-                    {
-                        position1++;
-                    }
+                    pointer1 = this.AdvancePointer(pointer1, firstSortedList);
                 }
-                else if (firstSortedList[position1] < secondSortedList[position2])
+                else if (firstSortedList[pointer1] < secondSortedList[pointer2])
                 {
-                    unionedList.Add(firstSortedList[position1]);
+                    unionedList.Add(firstSortedList[pointer1]);
 
-                    if (position1 < firstSortedList.Count)
-                    {
-                        position1++;
-                    }
+                    pointer1 = this.AdvancePointer(pointer1, firstSortedList);
                 }
-                else if (firstSortedList[position1] == secondSortedList[position2])
+                else if (firstSortedList[pointer1] == secondSortedList[pointer2])
                 {
-                    unionedList.Add(firstSortedList[position1]);
+                    unionedList.Add(firstSortedList[pointer1]);
 
-                    if (position1 < firstSortedList.Count)
-                    {
-                        position1++;
-                    }
-                    if (position2 < secondSortedList.Count)
-                    {
-                        position2++;
-                    }
+                    pointer1 = this.AdvancePointer(pointer1, firstSortedList);
+                    pointer2 = this.AdvancePointer(pointer2, secondSortedList);
                 }
-                else if (firstSortedList[position1] > secondSortedList[position2])
+                else if (firstSortedList[pointer1] > secondSortedList[pointer2])
                 {
-                    unionedList.Add(secondSortedList[position2]);
+                    unionedList.Add(secondSortedList[pointer2]);
 
-                    if (position2 < secondSortedList.Count)
-                    {
-                        position2++;
-                    }
+                    pointer2 = this.AdvancePointer(pointer2, secondSortedList);                    
                 }
-            } while (position1 < firstSortedList.Count || position2 < secondSortedList.Count);
+            } while (pointer1 < firstSortedList.Count || pointer2 < secondSortedList.Count);
             
             return unionedList;
+        }
+
+        private int AdvancePointer( int pointer, List<int> listForPointer)
+        {
+            if(pointer < listForPointer.Count)
+            {
+                pointer++;
+            }
+
+            return pointer;
         }
     }
 }
